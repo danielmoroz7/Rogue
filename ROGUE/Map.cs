@@ -17,14 +17,20 @@ namespace ROGUE
       
         public List<Item> items;
         public List<Enemy> enemies;
-        
 
+ 
         public int getTile(int x, int y)
         {
             int index = x + y * mapWidth;
             int tileId = GetLayer("ground").mapTiles[index];
             return tileId;
         }
+        /// <summary>
+        /// Palauttaa kartan ruudun tyypin (seinää, lattiaa tai portaita) annetussa (x,y) sijainnissa.
+        /// </summary>
+        /// <param name="x">X koordinaatti mapissa.</param>
+        /// <param name="y">Y koordinaatti mapissa.</param>
+        /// <returns>MapTile enumin arvo wall, floor ja stairs</returns>
         public MapTile GetTileAt(int x, int y)
         {
             // Calculate index: index = x + y * mapWidth
@@ -92,7 +98,11 @@ namespace ROGUE
             }
             return null;
         }
-
+        /// <summary>
+        /// Palauttaa pelaajan aloituspaikan kartalla annetun spawnin tunnisteen tunnisteen perusteella
+        /// </summary>
+        /// <param name="PlayerSpawn">Spawnin tunniste</param>
+        /// <returns>Pelaajan aloituskoordinaatit </returns>
         public Vector2 GetPlayerStart(int PlayerSpawn)
 
         {
@@ -120,6 +130,11 @@ namespace ROGUE
             return new Vector2(mapWidth / 2, layerHeight / 2);
 
         }
+        /// <summary>
+        /// Hakee vihollisen nimen spriten perusteella.
+        /// </summary>
+        /// <param name="spriteIndex">Vihollisen sprite indeksi.</param>
+        /// <returns>Vihollisen nimi tekstinä.</returns>
         public string GetEnemyName(int spriteIndex)
         {
             switch (spriteIndex)
@@ -229,6 +244,11 @@ namespace ROGUE
                 }
             }
         }
+        /// <summary>
+        /// Hakee kerrokset kartalta nimen perusteella.
+        /// </summary>
+        /// <param name="layerName">Kerrosnimen merkkijono.</param>
+        /// <returns>MapLayer-olio, jos kerros löytyy; muuten null.</returns>
         public MapLayer GetLayer(string layerName)
         {
             for (int i = 0; i < layers.Length; i++)
@@ -241,7 +261,10 @@ namespace ROGUE
             Console.WriteLine($"Error: No layer with name: {layerName}");
              return null; // Wanted layer was not found!
         }
-
+        /// <summary>
+        /// Piirtää kartan, viholliset ja esineet näytölle annetun tekstuurin avulla.
+        /// </summary>
+        /// <param name="Tilemap">Tekstuuri jota käytetään kartan palikoiden ja objektien piirtämiseen.</param>
         public void draw(Texture Tilemap)
         {
 

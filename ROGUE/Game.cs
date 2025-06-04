@@ -24,6 +24,9 @@ namespace ROGUE
         OptionsMenu myOptionsMenu;
         PauseMenu myPauseMenu;
 
+        /// <summary>
+        /// Piirtää päävalikon jossa voi aloittaa pelin tai siirtyä asetuksiin.
+        /// </summary>
         public void DrawMainMenu()
         {
             Raylib.BeginDrawing();
@@ -68,7 +71,9 @@ namespace ROGUE
         public static readonly int imagesPerRow = 12;
 
         public static readonly int PlayerStartTile = 99;
-
+        /// <summary>
+        /// Pelin päälooppi joka alustaa resurssit kuuntelee käyttäjän syötteitä ja vaihtaa pelitiloja.
+        /// </summary>
         public void Run()
         {
             
@@ -134,11 +139,16 @@ namespace ROGUE
                 }
             }
         }
-
+        /// <summary>
+        /// Käsittelee "Options" painikkeen napautuksen tapahtuman.
+        /// </summary>
         void OptionsButton(object sender, EventArgs args)
         {
             currentGameState.Push(GameState.OptionsMenu);
         }
+        /// <summary>
+        /// Käsittelee  "Back" painikkeen tapahtuman asetusvalikosta.
+        /// </summary>
         void OnOptionsBackButtonPressed(object sender, EventArgs args)
         {
             currentGameState.Pop();
@@ -147,7 +157,9 @@ namespace ROGUE
         {
             currentGameState.Pop();
         }
-
+        /// <summary>
+        /// Piirtää hahmonluontivalikon jossa pelaaja syöttää nimen ja valitsee hahmon.
+        /// </summary>
         void DrawCharacterMenu()
         {
             
@@ -202,6 +214,9 @@ namespace ROGUE
             Raylib.EndDrawing();
 
         }
+        /// <summary>
+        /// Pelin päivitys joka lukee pelaajan liikkeen, tarkistaa törmäykset, päivittää tilat ja piirtää pelinäkymän.
+        /// </summary>
         public void UpdateGame()
         {
 

@@ -34,6 +34,12 @@ namespace ROGUE
             }
 
         }
+        /// <summary>
+        /// Lataa tiledin luodun kartan tiedoston ja muuntaa sen Map-olioksi.
+        /// Lisäksi lataa kartan viholliset ja esineet.
+        /// </summary>
+        /// <param name="fileName">Tiledin tiedoston nimi</param>
+        /// <returns>Map-olio tai null jos lataus epäonnistui</returns>
         public Map LoadTiledMap(string fileName)
         {
             TiledMap LoadTiledMap = TurboMapReader.MapReader.LoadMapFromFile(fileName);
@@ -75,6 +81,12 @@ namespace ROGUE
             loadedMap.LoadItems();
             return loadedMap;
         }
+        /// <summary>
+        /// Muuntaa TurboMapReaderin Tiledin pelin oman Map-olion muotoon.
+        /// Lataa kentän ground, enemies ja items tasot.
+        /// </summary>
+        /// <param name="turboMap">TiledMap-olio</param>
+        /// <returns>Map-olio</returns>
         public Map ConvertTiledMapToMap(TiledMap turboMap)
         {
             // Luo tyhjä kenttä
